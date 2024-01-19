@@ -1,3 +1,15 @@
+// Copyright 2024 Serhii Kushnerov
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at serhiikushnerov@gmail.com
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 export const theme = createTheme({
     palette: {
         primary: {
@@ -11,54 +23,6 @@ export const theme = createTheme({
             // lightGrey: '#393e46',
             whiteGrey: '#393e46',
             // grey: '#6B6C6F',
-        },
-    },
-    typography: {
-        fontFamily: ['Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'].join(','),
-        h1: {
-            fontSize: 64,
-            fontWeight: 800,
-            lineHeight: '96px',
-        },
-        h2: {
-            fontSize: 48,
-            fontWeight: 700,
-            lineHeight: '58px',
-        },
-        h3: {
-            fontSize: 36,
-            fontWeight: 700,
-            lineHeight: '44px',
-        },
-        h4: {
-            fontSize: 28,
-            fontWeight: 700,
-            lineHeight: '28px',
-        },
-        h5: {
-            fontSize: 24,
-            fontWeight: 700,
-            lineHeight: '24px',
-        },
-        h6: {
-            fontSize: 20,
-            fontWeight: 700,
-            lineHeight: '24px',
-        },
-        subtitle1: {
-            fontSize: 14,
-            fontWeight: 700,
-            lineHeight: '18px',
-        },
-    },
-
-    breakpoints: {
-        values: {
-            xs: 0,
-            sm: 600,
-            md: 900,
-            lg: 1200,
-            xl: 1536,
         },
     },
 });
