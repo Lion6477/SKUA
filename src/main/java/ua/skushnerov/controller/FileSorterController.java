@@ -1,17 +1,28 @@
-package org.example.controller;
+// Copyright 2024 Serhii Kushnerov
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at serhiikushnerov@gmail.com
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+package ua.skushnerov.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.stage.DirectoryChooser;
-import org.example.exception.EmptyDirectoryPathException;
-import org.example.exception.InvalidDirectoryPathException;
-import org.example.exception.NoDirectorySelectedException;
-import org.example.service.Sorter;
+import ua.skushnerov.exception.EmptyDirectoryPathException;
+import ua.skushnerov.exception.InvalidDirectoryPathException;
+import ua.skushnerov.exception.NoDirectorySelectedException;
+import ua.skushnerov.service.Sorter;
+import ua.skushnerov.service.FolderPathValidator;
 
 import java.io.File;
-
-import static org.example.service.FolderPathValidator.isValidDirectoryPath;
 
 public class FileSorterController {
 
@@ -52,7 +63,7 @@ public class FileSorterController {
             resultTextField.setText("Error: Directory path is empty!");
             throw new EmptyDirectoryPathException();
         }
-        if (!isValidDirectoryPath(directoryPath)) {
+        if (!FolderPathValidator.isValidDirectoryPath(directoryPath)) {
             System.out.println("Invalid directory path");
             resultTextField.setText("Error: Invalid directory path!");
             throw new InvalidDirectoryPathException();

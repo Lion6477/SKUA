@@ -3,6 +3,6 @@ module FileSorter {
     requires javafx.graphics;
     requires javafx.fxml;
 
-    opens org.example; // Экспорт пакета org.example
-    opens org.example.controller to javafx.fxml;
+    opens ua.skushnerov; // Экспорт пакета org.example
+    opens ua.skushnerov.controller to javafx.fxml;
 }
