@@ -10,7 +10,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-package ua.skushnerov.controller.defoult;
+package ua.skushnerov.config.manager;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -20,7 +20,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class SceneManager {
-
     private static SceneManager instance;
     private Stage primaryStage;
 

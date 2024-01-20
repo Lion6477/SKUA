@@ -15,15 +15,15 @@ package ua.skushnerov.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-import ua.skushnerov.controller.defoult.SceneManager;
-import ua.skushnerov.controller.defoult.actions.Browse;
-import ua.skushnerov.controller.defoult.fields.ResultTextField;
-import ua.skushnerov.exception.EmptyDirectoryPathException;
-import ua.skushnerov.exception.InvalidDirectoryPathException;
-import ua.skushnerov.service.FolderPathValidator;
-import ua.skushnerov.service.Sorter;
+import ua.skushnerov.config.actions.Browse;
+import ua.skushnerov.config.fields.ResultTextField;
+import ua.skushnerov.config.manager.SceneChanger;
+import ua.skushnerov.config.manager.SceneManager;
+import ua.skushnerov.service.SorterService;
 
 public class FileSorterController {
+    SorterService sorterService = new SorterService();
+    SceneChanger sceneChanger = SceneChanger.getInstance();
 
     @FXML
     private TextField directoryTextField;
@@ -46,33 +46,21 @@ public class FileSorterController {
 
     @FXML
     private void sortFilesButtonClicked(ActionEvent event) {
-        System.out.println("" + event.getTarget() + " " + event.getSource());//logs
         String directoryPath = directoryTextField.getText();
-        if (directoryPath.isEmpty()) {
-            resultTextField.setText("Error: Directory path is empty!");
-            throw new EmptyDirectoryPathException();
-        }
-        if (!FolderPathValidator.isValidDirectoryPath(directoryPath)) {
-            System.out.println("Invalid directory path");
-            resultTextField.setText("Error: Invalid directory path!");
-            throw new InvalidDirectoryPathException();
-        }
 
-        Sorter.sortFilesByExtension(directoryPath);
-
-        System.out.println("Sorted directory: " + directoryPath);
+        sorterService.sortFilesByExtension(directoryPath);
         resultTextField.setText("Sorted directory: " + directoryPath);
     }
 
     @FXML
     private void navigateToFileSorter() {
-        sceneManager.switchScene("/fxml/FileSorter.fxml", "File Sorter");
+        sceneChanger.toFileSorterScene();
         resultTextField.setText("Navigating to File Sorter");
     }
 
     @FXML
     private void navigateToCopyPage() {
-        sceneManager.switchScene("/fxml/CopyPage.fxml", "Copy Page");
+        sceneChanger.toCopyPageScene();
         resultTextField.setText("Navigating to Copy Page");
     }
 }

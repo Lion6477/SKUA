@@ -12,15 +12,35 @@
 // limitations under the License.
 package ua.skushnerov.service;
 
+import javafx.scene.control.TextField;
+import ua.skushnerov.config.fields.ResultTextField;
+import ua.skushnerov.exception.EmptyDirectoryPathException;
+import ua.skushnerov.exception.InvalidDirectoryPathException;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 
-public class Sorter {
+public class SorterService {
+    public SorterService() {
 
-    public static void sortFilesByExtension(String directoryPath) {
+    }
+
+    private TextField resultTextField = ResultTextField.getInstance();
+
+    public void sortFilesByExtension(String directoryPath) {
+        if (directoryPath.isEmpty()) {
+            resultTextField.setText("Error: Directory path is empty!");
+            throw new EmptyDirectoryPathException();
+        }
+        if (!FolderPathValidator.isValidDirectoryPath(directoryPath)) {
+            System.out.println("Invalid directory path");
+            resultTextField.setText("Error: Invalid directory path!");
+            throw new InvalidDirectoryPathException();
+        }
+
         File directory = new File(directoryPath);
         File[] files = directory.listFiles();
 
