@@ -15,17 +15,16 @@ package ua.skushnerov.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-import ua.skushnerov.controller.defoult.SceneManager;
-import ua.skushnerov.controller.defoult.actions.Browse;
-import ua.skushnerov.controller.defoult.fields.ResultTextField;
-
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
+import ua.skushnerov.config.actions.Browse;
+import ua.skushnerov.config.fields.ResultTextField;
+import ua.skushnerov.config.manager.SceneChanger;
+import ua.skushnerov.config.manager.SceneManager;
+import ua.skushnerov.service.CopyService;
 
 public class CopyPageController {
+    CopyService copyService = new CopyService();
+    SceneChanger sceneChanger = SceneChanger.getInstance();
+
     @FXML
     private TextField resultTextField = ResultTextField.getInstance();
 
@@ -41,64 +40,12 @@ public class CopyPageController {
 
 
     @FXML
-    private void copyFiles() {
+    private void copyButtonAction() {
         String sourcePath = sourceDirectoryField.getText();
         String destinationPath = destinationDirectoryField.getText();
 
-        try {
-            Path sourceDir = Paths.get(sourcePath);
-            Path destinationDir = Paths.get(destinationPath);
+        copyService.copyElements(sourcePath, destinationPath, resultTextField);
 
-            // Проверяем, что исходная директория существует
-            if (!Files.exists(sourceDir)) {
-                resultTextField.setText("Source directory does not exist!");
-                return;
-            }
-
-            // Создаем директорию назначения, если она не существует
-            if (!Files.exists(destinationDir)) {
-                Files.createDirectories(destinationDir);
-            }
-
-            // Копируем все файлы и поддиректории из исходной директории в директорию назначения
-            Files.walk(sourceDir)
-                    .forEach(source -> {
-                        try {
-                            Path destination = destinationDir.resolve(sourceDir.relativize(source));
-                            if (!Files.exists(destination)) {
-                                System.out.println("Copying: " + source);
-                                System.out.println("To: " + destination);
-
-                                if (Files.isDirectory(source)) {
-                                    // Если это директория, создаем соответствующую директорию в директории назначения
-                                    Files.createDirectories(destination);
-                                } else {
-                                    // Если это файл, копируем его в директорию назначения
-                                    Files.copy(source, destination, StandardCopyOption.REPLACE_EXISTING);
-                                }
-                            }
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    });
-
-            resultTextField.setText("Files copied successfully!");
-        } catch (Exception e) {
-            e.printStackTrace();
-            resultTextField.setText("Error during file copy");
-        }
-    }
-
-    @FXML
-    private void navigateToFileSorter() {
-        sceneManager.switchScene("/fxml/FileSorter.fxml", "File Sorter");
-        resultTextField.setText("Navigating to File Sorter");
-    }
-
-    @FXML
-    private void navigateToCopyPage() {
-        sceneManager.switchScene("/fxml/CopyPage.fxml", "Copy Page");
-        resultTextField.setText("Navigating to Copy Page");
     }
 
     public void browseSourceDirectoryButtonClicked(ActionEvent event) {
@@ -109,5 +56,17 @@ public class CopyPageController {
     public void browseDestinationDirectoryButtonClicked(ActionEvent event) {
         browsebutton.browse(event, resultTextField, destinationDirectoryField);
         System.out.println("browseDestinationDirectoryButtonClicked");
+    }
+
+    @FXML
+    private void navigateToFileSorter() {
+        sceneChanger.toFileSorterScene();
+        resultTextField.setText("Navigating to File Sorter");
+    }
+
+    @FXML
+    private void navigateToCopyPage() {
+        sceneChanger.toCopyPageScene();
+        resultTextField.setText("Navigating to Copy Page");
     }
 }

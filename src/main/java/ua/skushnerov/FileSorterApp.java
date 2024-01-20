@@ -17,7 +17,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import ua.skushnerov.controller.defoult.SceneManager;
+import ua.skushnerov.config.manager.SceneManager;
 
 public class FileSorterApp extends Application {
 

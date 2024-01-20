@@ -19,5 +19,7 @@ module FileSorter {
 
     opens ua.skushnerov;
     opens ua.skushnerov.controller to javafx.fxml;
-    opens ua.skushnerov.controller.defoult;
+    opens ua.skushnerov.config.fields;
+    opens ua.skushnerov.config.manager;
+    opens ua.skushnerov.config.actions;
 }
