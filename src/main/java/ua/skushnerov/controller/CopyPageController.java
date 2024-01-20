@@ -49,12 +49,12 @@ public class CopyPageController {
     }
 
     public void browseSourceDirectoryButtonClicked(ActionEvent event) {
-        browsebutton.browse(event, resultTextField, sourceDirectoryField);
+        browsebutton.browse(resultTextField, sourceDirectoryField);
         System.out.println("browseSourceDirectoryButtonClicked");
     }
 
     public void browseDestinationDirectoryButtonClicked(ActionEvent event) {
-        browsebutton.browse(event, resultTextField, destinationDirectoryField);
+        browsebutton.browse(resultTextField, destinationDirectoryField);
         System.out.println("browseDestinationDirectoryButtonClicked");
     }
 

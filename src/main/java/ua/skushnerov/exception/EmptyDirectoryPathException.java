@@ -16,4 +16,8 @@ public class EmptyDirectoryPathException extends RuntimeException {
     public EmptyDirectoryPathException() {
         super("Directory path is empty");
     }
+
+    public EmptyDirectoryPathException(String message) {
+        super(message);
+    }
 }

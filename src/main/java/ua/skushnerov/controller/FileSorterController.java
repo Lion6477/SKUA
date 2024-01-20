@@ -41,7 +41,7 @@ public class FileSorterController {
 
     @FXML
     private void browseButtonClicked(ActionEvent event) {
-        browsebutton.browse(event, resultTextField, directoryTextField);
+        browsebutton.browse(resultTextField, directoryTextField);
     }
 
     @FXML
