@@ -10,14 +10,22 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+package ua.skushnerov.controller.defoult.fields;
 
-module FileSorter {
+import javafx.scene.control.TextField;
 
-    requires javafx.controls;
-    requires javafx.graphics;
-    requires javafx.fxml;
+public class ResultTextField extends TextField {
 
-    opens ua.skushnerov;
-    opens ua.skushnerov.controller to javafx.fxml;
-    opens ua.skushnerov.controller.defoult;
+    private static TextField instance;
+
+    private ResultTextField() {
+
+    }
+
+    public static TextField getInstance() {
+        if (instance == null) {
+            instance = new TextField();
+        }
+        return instance;
+    }
 }

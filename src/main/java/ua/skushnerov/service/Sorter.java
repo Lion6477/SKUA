@@ -36,9 +36,7 @@ public class Sorter {
         }
 
         // Сортировка файлов внутри каждой группы
-        fileMap.forEach((extension, fileList) -> {
-            fileList.sort((f1, f2) -> f1.getName().compareTo(f2.getName()));
-        });
+        fileMap.forEach((extension, fileList) -> fileList.sort((f1, f2) -> f1.getName().compareTo(f2.getName())));
 
         // Перемещение файлов в новые каталоги
         for (String extension : fileMap.keySet()) {
