@@ -11,24 +11,28 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 package ua.skushnerov.controller;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-import javafx.stage.DirectoryChooser;
+import ua.skushnerov.controller.defoult.SceneManager;
+import ua.skushnerov.controller.defoult.actions.Browse;
+import ua.skushnerov.controller.defoult.fields.ResultTextField;
 import ua.skushnerov.exception.EmptyDirectoryPathException;
 import ua.skushnerov.exception.InvalidDirectoryPathException;
-import ua.skushnerov.exception.NoDirectorySelectedException;
-import ua.skushnerov.service.Sorter;
 import ua.skushnerov.service.FolderPathValidator;
-
-import java.io.File;
+import ua.skushnerov.service.Sorter;
 
 public class FileSorterController {
 
     @FXML
     private TextField directoryTextField;
     @FXML
-    private TextField resultTextField;
+    private TextField resultTextField = ResultTextField.getInstance();
+
+    private Browse browsebutton = new Browse();
+
+    private SceneManager sceneManager = SceneManager.getInstance();
 
     @FXML
     private void initialize() {
@@ -37,21 +41,7 @@ public class FileSorterController {
 
     @FXML
     private void browseButtonClicked(ActionEvent event) {
-        System.out.println("" + event.getTarget() + " " + event.getSource());
-        DirectoryChooser directoryChooser = new DirectoryChooser();
-        directoryChooser.setTitle("Select Directory");
-        File selectedDirectory = directoryChooser.showDialog(null);
-
-        if (selectedDirectory == null) {
-            System.out.println("No directory selected");
-            resultTextField.setText("Warning: No directory selected!");
-            throw new NoDirectorySelectedException();
-
-        } else {
-            String inputPath = selectedDirectory.getAbsolutePath();
-            directoryTextField.setText(inputPath);
-            resultTextField.setText("Selected directory: " + inputPath);
-        }
+        browsebutton.browse(event, resultTextField, directoryTextField);
     }
 
     @FXML
@@ -73,6 +63,19 @@ public class FileSorterController {
         System.out.println("Sorted directory: " + directoryPath);
         resultTextField.setText("Sorted directory: " + directoryPath);
     }
+
+    @FXML
+    private void navigateToFileSorter() {
+        sceneManager.switchScene("/fxml/FileSorter.fxml", "File Sorter");
+        resultTextField.setText("Navigating to File Sorter");
+    }
+
+    @FXML
+    private void navigateToCopyPage() {
+        sceneManager.switchScene("/fxml/CopyPage.fxml", "Copy Page");
+        resultTextField.setText("Navigating to Copy Page");
+    }
 }
+
 
 

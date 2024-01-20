@@ -12,38 +12,46 @@
 <!--WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.-->
 <!--See the License for the specific language governing permissions and-->
 <!--limitations under the License.-->
+<!-- CopyPage.fxml -->
 
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="ua.skushnerov.controller.FileSorterController">
+      fx:controller="ua.skushnerov.controller.CopyPageController">
     <HBox alignment="CENTER" spacing="10">
-        <Label alignment="CENTER" style="-fx-font-size: 20.0;" text="Select Directory">
-        </Label>
-        <VBox.margin>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
-        </VBox.margin>
-    </HBox>
+        <Label text="Copy Page"/>
 
-    <HBox alignment="CENTER" spacing="10">
-        <TextField fx:id="directoryTextField" promptText="C:\Downloads" style="-fx-pref-width: 250.0;">
-        </TextField>
         <VBox.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
         </VBox.margin>
     </HBox>
     <HBox alignment="CENTER" spacing="10">
-
-        <Button fx:id="browseButton" onAction="#browseButtonClicked" text="Browse">
+        <TextField fx:id="sourceDirectoryField" promptText="Source Directory"/>
+        <Button fx:id="browseSourceDirectoryButton" onAction="#browseSourceDirectoryButtonClicked" text="Browse">
         </Button>
 
-        <Button fx:id="sortFiles" onAction="#sortFilesButtonClicked" text="Sort Files">
-        </Button>
         <VBox.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
         </VBox.margin>
     </HBox>
+    <HBox alignment="CENTER" spacing="10">
+        <TextField fx:id="destinationDirectoryField" promptText="Destination Directory"/>
+        <Button fx:id="browseDestinationDirectoryButton" onAction="#browseDestinationDirectoryButtonClicked"
+                text="Browse">
+        </Button>
+
+        <VBox.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+        </VBox.margin>
+    </HBox>
+    <HBox alignment="CENTER" spacing="10">
+        <Button onAction="#copyFiles" text="Start Copying"/>
+        <VBox.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+        </VBox.margin>
+    </HBox>
+    <!---->
     <HBox alignment="CENTER" spacing="10">
         <TextField fx:id="resultTextField" editable="false" promptText="Result" style="-fx-pref-width: 250.0;">
         </TextField>
