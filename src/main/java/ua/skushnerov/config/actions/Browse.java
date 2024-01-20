@@ -12,7 +12,6 @@
 // limitations under the License.
 package ua.skushnerov.config.actions;
 
-import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.DirectoryChooser;
@@ -21,8 +20,7 @@ import ua.skushnerov.exception.NoDirectorySelectedException;
 import java.io.File;
 
 public class Browse extends Button {
-    public void browse(ActionEvent event, TextField resultTextField, TextField directoryTextField) {
-        System.out.println("" + event.getTarget() + " " + event.getSource());
+    public void browse(TextField resultTextField, TextField directoryTextField) {
         DirectoryChooser directoryChooser = new DirectoryChooser();
         directoryChooser.setTitle("Select Directory");
         File selectedDirectory = directoryChooser.showDialog(null);

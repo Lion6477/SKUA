@@ -13,6 +13,8 @@
 package ua.skushnerov.service;
 
 import javafx.scene.control.TextField;
+import ua.skushnerov.exception.EmptyDirectoryPathException;
+import ua.skushnerov.exception.InvalidDirectoryPathException;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -25,6 +27,23 @@ public class CopyService {
     }
 
     public void copyElements(String sourcePath, String destinationPath, TextField resultTextField) {
+        if (sourcePath.isEmpty()) {
+            resultTextField.setText("Error: Source path is empty!");
+            throw new EmptyDirectoryPathException("Source path is empty");
+        }
+        if (!FolderPathValidator.isValidDirectoryPath(sourcePath)) {
+            resultTextField.setText("Error: Invalid source path!");
+            throw new InvalidDirectoryPathException("Invalid source path");
+        }
+        if (destinationPath.isEmpty()) {
+            resultTextField.setText("Error: Destination path is empty!");
+            throw new EmptyDirectoryPathException("Destination path is empty");
+        }
+        if (!FolderPathValidator.isValidDirectoryPath(destinationPath)) {
+            resultTextField.setText("Error: Invalid destination path!");
+            throw new InvalidDirectoryPathException("Invalid destination path");
+        }
+
         Thread copyThread = new Thread(() -> {
             try {
                 Path sourceDir = Paths.get(sourcePath);
@@ -63,7 +82,7 @@ public class CopyService {
                 resultTextField.setText("Error during file copy");
             }
         });
-        System.out.println("Copying elements from " + sourcePath + " to " + destinationPath);
         copyThread.start();
+
     }
 }

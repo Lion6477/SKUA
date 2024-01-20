@@ -16,4 +16,8 @@ public class InvalidDirectoryPathException extends RuntimeException {
     public InvalidDirectoryPathException() {
         super("Invalid directory path!");
     }
+
+    public InvalidDirectoryPathException(String message) {
+        super(message);
+    }
 }
