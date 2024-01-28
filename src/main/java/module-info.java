@@ -17,6 +17,6 @@ module FileSorter {
     requires javafx.graphics;
     requires javafx.fxml;
 
-    opens ua.skushnerov; // Экспорт пакета org.example
+    opens ua.skushnerov;
     opens ua.skushnerov.controller to javafx.fxml;
 }

@@ -14,6 +14,7 @@ package ua.skushnerov.service;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
@@ -24,10 +25,8 @@ public class Sorter {
         File directory = new File(directoryPath);
         File[] files = directory.listFiles();
 
-        // Структура для хранения файлов по расширению
         HashMap<String, List<File>> fileMap = new HashMap<>();
 
-        // Группировка файлов по расширению
         for (File file : files) {
             if (file.isFile()) {
                 String extension = getFileExtension(file);
@@ -35,12 +34,8 @@ public class Sorter {
             }
         }
 
-        // Сортировка файлов внутри каждой группы
-        fileMap.forEach((extension, fileList) -> {
-            fileList.sort((f1, f2) -> f1.getName().compareTo(f2.getName()));
-        });
+        fileMap.forEach((extension, fileList) -> fileList.sort(Comparator.comparing(File::getName)));
 
-        // Перемещение файлов в новые каталоги
         for (String extension : fileMap.keySet()) {
             File extensionDirectory = new File(directoryPath + "/" + extension);
             if (!extensionDirectory.exists()) {

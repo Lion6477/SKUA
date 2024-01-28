@@ -12,7 +12,7 @@
 // limitations under the License.
 package ua.skushnerov;
 
-public class Launcher {
+public class App {
     public static void main(String[] args) {
         FileSorterApp.main(args);
     }
