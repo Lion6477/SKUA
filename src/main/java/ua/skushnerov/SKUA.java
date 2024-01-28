@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 import ua.skushnerov.config.manager.SceneChanger;
 import ua.skushnerov.config.manager.SceneManager;
 
-public class FileSorterApp extends Application {
+public class SKUA extends Application {
     SceneChanger sceneChanger = SceneChanger.getInstance();
 
     public static void main(String[] args) {
@@ -25,8 +25,8 @@ public class FileSorterApp extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
-        SceneManager.getInstance().setPrimaryStage(primaryStage);
+    public void start(Stage stage) throws Exception {
+        SceneManager.getInstance(stage).setPrimaryStage(stage);
         sceneChanger.toFileSorterScene();
     }
 }

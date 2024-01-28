@@ -14,6 +14,6 @@ package ua.skushnerov;
 
 public class Launcher {
     public static void main(String[] args) {
-        FileSorterApp.main(args);
+        SKUA.main(args);
     }
 }

@@ -17,7 +17,7 @@ public class SceneChanger {
     }
 
     public void toFileSorterScene() {
-        sceneManager.switchScene("/fxml/FileSorter.fxml", "File Sorter");
+        sceneManager.switchScene("/fxml/FileSorter.fxml");
     }
 
     public void toCopyPageScene() {

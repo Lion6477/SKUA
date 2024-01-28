@@ -12,10 +12,12 @@
 // limitations under the License.
 package ua.skushnerov.config.manager;
 
+import javafx.beans.DefaultProperty;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import ua.skushnerov.SKUA;
 
 import java.io.IOException;
 
@@ -34,6 +36,24 @@ public class SceneManager {
         return instance;
     }
 
+    public static SceneManager getInstance(Stage stage) {
+        if (instance == null) {
+            System.out.println(instance.toString());
+            instance = new SceneManager();
+            FXMLLoader fxmlLoader = new FXMLLoader(SKUA.class.getResource("hello-view.fxml"));
+            try {
+                Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+                stage.setScene(scene);
+                stage.show();
+            }
+            catch (IOException e) {
+                System.exit(1);  // Close program
+            }
+        }
+        return instance;
+    }
+
+
     public void setPrimaryStage(Stage primaryStage) {
         this.primaryStage = primaryStage;
     }
@@ -47,7 +67,19 @@ public class SceneManager {
             primaryStage.setScene(new Scene(root));
             primaryStage.show();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.exit(1);  // Close program
+        }
+    }
+    public void switchScene(String fxmlPath) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlPath));
+            Parent root = fxmlLoader.load();
+
+            primaryStage.setTitle("JFX Title");
+            primaryStage.setScene(new Scene(root));
+            primaryStage.show();
+        } catch (IOException e) {
+            System.exit(1);  // Close program
         }
     }
 }
