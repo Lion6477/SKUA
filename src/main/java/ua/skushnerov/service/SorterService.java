@@ -19,6 +19,7 @@ import ua.skushnerov.exception.InvalidDirectoryPathException;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
@@ -44,21 +45,16 @@ public class SorterService {
         File directory = new File(directoryPath);
         File[] files = directory.listFiles();
 
-        // Структура для хранения файлов по расширению
         HashMap<String, List<File>> fileMap = new HashMap<>();
 
-        // Группировка файлов по расширению
         for (File file : files) {
             if (file.isFile()) {
                 String extension = getFileExtension(file);
                 fileMap.computeIfAbsent(extension, k -> new ArrayList<>()).add(file);
             }
         }
+        fileMap.forEach((extension, fileList) -> fileList.sort(Comparator.comparing(File::getName)));
 
-        // Сортировка файлов внутри каждой группы
-        fileMap.forEach((extension, fileList) -> fileList.sort((f1, f2) -> f1.getName().compareTo(f2.getName())));
-
-        // Перемещение файлов в новые каталоги
         for (String extension : fileMap.keySet()) {
             File extensionDirectory = new File(directoryPath + "/" + extension);
             if (!extensionDirectory.exists()) {
