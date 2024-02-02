@@ -39,3 +39,4 @@ build/
 .idea/aws.xml
 /out/
 .idea/discord.xml
+.idea/runConfigurations/App.xml
