@@ -13,9 +13,10 @@
 package ua.skushnerov.service;
 
 import javafx.scene.control.TextField;
-import ua.skushnerov.config.fields.ResultTextField;
+import javafx.stage.DirectoryChooser;
 import ua.skushnerov.exception.EmptyDirectoryPathException;
 import ua.skushnerov.exception.InvalidDirectoryPathException;
+import ua.skushnerov.exception.NoDirectorySelectedException;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -25,21 +26,56 @@ import java.util.List;
 
 
 public class SorterService {
-    public SorterService() {
+    private static SorterService instance;
+
+    private SorterService() {
 
     }
 
-    private TextField resultTextField = ResultTextField.getInstance();
+    public static SorterService getInstance() {
+        if (instance == null) {
+            instance = new SorterService();
+        }
+        return instance;
+    }
 
-    public void sortFilesByExtension(String directoryPath) {
+    public void browse(TextField directoryTextField) {
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        directoryChooser.setTitle("Select Directory");
+        File selectedDirectory = directoryChooser.showDialog(null);
+
+        if (selectedDirectory == null) {
+//            throw new NoDirectorySelectedException(); //TODO: add to logfile
+        } else {
+            String inputPath = selectedDirectory.getAbsolutePath();
+            directoryTextField.setText(inputPath);
+        }
+    }
+
+    public void browse(TextField directoryTextField, TextField resultTextField) {
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        directoryChooser.setTitle("Select Directory");
+        File selectedDirectory = directoryChooser.showDialog(null);
+
+        if (selectedDirectory == null) {
+            System.out.println("No directory selected");
+            resultTextField.setText("Warning: No directory selected!");
+        } else {
+            String inputPath = selectedDirectory.getAbsolutePath();
+            directoryTextField.setText(inputPath);
+            resultTextField.setText("Selected directory: " + inputPath);
+        }
+    }
+
+    public void sortFilesByExtension(String directoryPath, TextField resultTextField) {
         if (directoryPath.isEmpty()) {
             resultTextField.setText("Error: Directory path is empty!");
-            throw new EmptyDirectoryPathException();
+            throw new EmptyDirectoryPathException(); //TODO: add to logfile
         }
         if (!FolderPathValidator.isValidDirectoryPath(directoryPath)) {
             System.out.println("Invalid directory path");
             resultTextField.setText("Error: Invalid directory path!");
-            throw new InvalidDirectoryPathException();
+            throw new InvalidDirectoryPathException(); //TODO: add to logfile
         }
 
         File directory = new File(directoryPath);
@@ -66,6 +102,7 @@ public class SorterService {
                 file.renameTo(newFile);
             }
         }
+        resultTextField.setText("Sorted directory: " + directoryPath);
     }
 
     private static String getFileExtension(File file) {

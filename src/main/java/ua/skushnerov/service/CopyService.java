@@ -23,7 +23,17 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
 public class CopyService {
-    public CopyService() {
+
+    private static CopyService instance;
+
+    private CopyService() {
+    }
+
+    public static CopyService getInstance() {
+        if (instance == null) {
+            instance = new CopyService();
+        }
+        return instance;
     }
 
     public void copyElements(String sourcePath, String destinationPath, TextField resultTextField) {
