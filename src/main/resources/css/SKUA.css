@@ -1,0 +1,49 @@
+.primary {
+    background-color: #222831
+}
+.secondary {
+    background-color: #ff5722
+}
+.neutral-white {
+    background-color: #f5f0e8
+}
+.neutral-lightGrey {
+    background-color: #393e46
+}
+.neutral-whiteGrey {
+    background-color: #393e46
+}
+.neutral-grey {
+    background-color: #6B6C6F
+}
+.menu-slider {
+
+}
+.menu-button {
+    -fx-border-color: #6B6C6F;
+    -fx-border-width: 0px 0px 0px 0px;
+}
+
+.sidebar-item {
+    -fx-border-color: black;
+    -fx-border-width: 0px 0px 3px 0px;
+    /*-fx-background-radius: 0;*/
+    -fx-background-color: transparent;
+    /*-fx-font-family:"Segoe UI", Helvetica, Arial, sans-serif;*/
+    /*-fx-font-size: 1em; !* 12 *!*/
+    /*-fx-text-fill: #828282;*/
+}
+
+.sidebar-item:hover {
+    -fx-border-color: #ff5722;
+    -fx-border-width: 0px 0px 0px 3px;
+    /*-fx-border-width: 1, 1;*/
+    /*-fx-border-style: solid;*/
+    /*-fx-border-radius: 0, 0;*/
+    /*-fx-border-insets: 1 1 1 1, 0;*/
+}
+
+/*.sidebaritem:pressed {*/
+/*    -fx-background-color: black;*/
+/*    -fx-text-fill: white;*/
+/*}*/
