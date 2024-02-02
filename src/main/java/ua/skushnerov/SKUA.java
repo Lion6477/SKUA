@@ -17,30 +17,29 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import ua.skushnerov.config.manager.SceneChanger;
-import ua.skushnerov.config.manager.SceneManager;
 
 public class SKUA extends Application {
-    SceneChanger sceneChanger = SceneChanger.getInstance();
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("/fxml/fileSorter.fxml"));
+        fxmlLoader.setLocation(getClass().getResource("/fxml/SKUA.fxml"));
         Parent root = fxmlLoader.load();
+        Scene primaryScene = new Scene(root);
 
-        primaryStage.setTitle("File Sorter");
-        primaryStage.setScene(new Scene(root));
+        primaryStage.setTitle("SKUA");
+        primaryStage.setResizable(false);
+        primaryStage.toFront();
+        primaryStage.centerOnScreen();
+        primaryStage.sizeToScene();
+//        primaryStage.getIcons().add(new javafx.scene.image.Image("/image/icon.png"));
+        primaryStage.setScene(primaryScene);
         primaryStage.show();
-        SceneManager.getInstance(primaryStage).setPrimaryStage(primaryStage);
-        sceneChanger.toFileSorterScene();
     }
 
     public static void main(String[] args) {
         launch(args);
     }
-
-
 }
 
 
