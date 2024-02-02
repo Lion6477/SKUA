@@ -19,8 +19,22 @@ import ua.skushnerov.exception.NoDirectorySelectedException;
 
 import java.io.File;
 
-public class Browse extends Button {
-    public void browse(TextField resultTextField, TextField directoryTextField) {
+public class Browse {
+
+    public static void browse(TextField directoryTextField) {
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        directoryChooser.setTitle("Select Directory");
+        File selectedDirectory = directoryChooser.showDialog(null);
+
+        if (selectedDirectory == null) {
+            throw new NoDirectorySelectedException();
+        } else {
+            String inputPath = selectedDirectory.getAbsolutePath();
+            directoryTextField.setText(inputPath);
+        }
+    }
+
+    public static void browse(TextField directoryTextField, TextField resultTextField) {
         DirectoryChooser directoryChooser = new DirectoryChooser();
         directoryChooser.setTitle("Select Directory");
         File selectedDirectory = directoryChooser.showDialog(null);
@@ -35,6 +49,4 @@ public class Browse extends Button {
             resultTextField.setText("Selected directory: " + inputPath);
         }
     }
-
-
 }
