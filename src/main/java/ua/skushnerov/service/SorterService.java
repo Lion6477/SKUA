@@ -16,7 +16,6 @@ import javafx.scene.control.TextField;
 import javafx.stage.DirectoryChooser;
 import ua.skushnerov.exception.EmptyDirectoryPathException;
 import ua.skushnerov.exception.InvalidDirectoryPathException;
-import ua.skushnerov.exception.NoDirectorySelectedException;
 
 import java.io.File;
 import java.util.ArrayList;

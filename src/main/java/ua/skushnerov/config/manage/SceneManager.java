@@ -44,8 +44,7 @@ public class SceneManager {
                 Scene scene = new Scene(fxmlLoader.load(), 320, 240);
                 stage.setScene(scene);
                 stage.show();
-            }
-            catch (IOException e) {
+            } catch (IOException e) {
                 System.exit(1);  // Close program
             }
         }
@@ -69,6 +68,7 @@ public class SceneManager {
             System.exit(1);  // Close program
         }
     }
+
     public void switchScene(String fxmlPath) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlPath));
