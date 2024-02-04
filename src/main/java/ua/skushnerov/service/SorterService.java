@@ -19,7 +19,7 @@ import java.util.HashMap;
 import java.util.List;
 
 
-public class Sorter {
+public class SorterService {
 
     public static void sortFilesByExtension(String directoryPath) {
         File directory = new File(directoryPath);
