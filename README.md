@@ -11,4 +11,4 @@ Sorts files in the selected folder by their extension.
  3. Find application shortcut on **Desctop** or **Windows menu**
  4. Click on it!
 
-### You can support me or suggest new features on my [Patreon](patreon.com/SerhiiKushnerov)!
+### You can support me or suggest new features on my [Patreon](https://patreon.com/SerhiiKushnerov)!
